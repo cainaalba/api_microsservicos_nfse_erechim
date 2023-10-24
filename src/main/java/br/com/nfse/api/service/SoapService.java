@@ -28,6 +28,8 @@ public class SoapService {
         GerarNfse request = new GerarNfse();
         request.setNfseCabecMsg(dados.getNfseCabecMsg());
         request.setNfseDadosMsg(dados.getNfseDadosMsg());
+
+        
         
         return invokeSoapService(request);
     }

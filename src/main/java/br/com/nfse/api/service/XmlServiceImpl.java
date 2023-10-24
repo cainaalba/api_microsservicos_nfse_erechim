@@ -1,13 +1,10 @@
 package br.com.nfse.api.service;
 
-import br.com.head.nfe.dtos.Nfse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.xml.sax.SAXException;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
+import javax.xml.bind.*;
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Schema;
@@ -20,7 +17,7 @@ import java.io.StringWriter;
 
 @Slf4j
 @Service
-public class XmlServiceImpl {
+public class XmlServiceImpl implements XmlService {
 
     @Override
     public String convertToXml(Object payload) {

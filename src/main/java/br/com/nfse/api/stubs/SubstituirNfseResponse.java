@@ -4,6 +4,7 @@ package br.com.nfse.api.stubs;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
 import jakarta.xml.bind.annotation.XmlType;
 
 
@@ -30,6 +31,7 @@ import jakarta.xml.bind.annotation.XmlType;
 @XmlType(name = "SubstituirNfseResponse", propOrder = {
     "_return"
 })
+@XmlRootElement(name = "SubstituirNfseResponse")
 public class SubstituirNfseResponse {
 
     @XmlElement(name = "return")
