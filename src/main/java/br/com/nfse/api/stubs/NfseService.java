@@ -33,8 +33,8 @@ public interface NfseService {
      */
     @WebMethod(operationName = "SubstituirNfse")
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "SubstituirNfse", targetNamespace = "http://NFSe.wsservices.systempro.com.br/", className = "br.com.nfse.api.servico.SubstituirNfse")
-    @ResponseWrapper(localName = "SubstituirNfseResponse", targetNamespace = "http://NFSe.wsservices.systempro.com.br/", className = "br.com.nfse.api.servico.SubstituirNfseResponse")
+    @RequestWrapper(localName = "SubstituirNfse", targetNamespace = "http://NFSe.wsservices.systempro.com.br/", className = "br.com.nfse.api.stubs.SubstituirNfse")
+    @ResponseWrapper(localName = "SubstituirNfseResponse", targetNamespace = "http://NFSe.wsservices.systempro.com.br/", className = "br.com.nfse.api.stubs.SubstituirNfseResponse")
     @Action(input = "http://NFSe.wsservices.systempro.com.br/NfseService/SubstituirNfseRequest", output = "http://NFSe.wsservices.systempro.com.br/NfseService/SubstituirNfseResponse")
     public String substituirNfse(
         @WebParam(name = "nfseCabecMsg", targetNamespace = "")
@@ -51,8 +51,8 @@ public interface NfseService {
      */
     @WebMethod(operationName = "GerarNfse")
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "GerarNfse", targetNamespace = "http://NFSe.wsservices.systempro.com.br/", className = "br.com.nfse.api.servico.GerarNfse")
-    @ResponseWrapper(localName = "GerarNfseResponse", targetNamespace = "http://NFSe.wsservices.systempro.com.br/", className = "br.com.nfse.api.servico.GerarNfseResponse")
+    @RequestWrapper(localName = "GerarNfse", targetNamespace = "http://NFSe.wsservices.systempro.com.br/", className = "br.com.nfse.api.stubs.GerarNfse")
+    @ResponseWrapper(localName = "GerarNfseResponse", targetNamespace = "http://NFSe.wsservices.systempro.com.br/", className = "br.com.nfse.api.stubs.GerarNfseResponse")
     @Action(input = "http://NFSe.wsservices.systempro.com.br/NfseService/GerarNfseRequest", output = "http://NFSe.wsservices.systempro.com.br/NfseService/GerarNfseResponse")
     public String gerarNfse(
         @WebParam(name = "nfseCabecMsg", targetNamespace = "")
@@ -69,8 +69,8 @@ public interface NfseService {
      */
     @WebMethod(operationName = "CancelarNfse")
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "CancelarNfse", targetNamespace = "http://NFSe.wsservices.systempro.com.br/", className = "br.com.nfse.api.servico.CancelarNfse")
-    @ResponseWrapper(localName = "CancelarNfseResponse", targetNamespace = "http://NFSe.wsservices.systempro.com.br/", className = "br.com.nfse.api.servico.CancelarNfseResponse")
+    @RequestWrapper(localName = "CancelarNfse", targetNamespace = "http://NFSe.wsservices.systempro.com.br/", className = "br.com.nfse.api.stubs.CancelarNfse")
+    @ResponseWrapper(localName = "CancelarNfseResponse", targetNamespace = "http://NFSe.wsservices.systempro.com.br/", className = "br.com.nfse.api.stubs.CancelarNfseResponse")
     @Action(input = "http://NFSe.wsservices.systempro.com.br/NfseService/CancelarNfseRequest", output = "http://NFSe.wsservices.systempro.com.br/NfseService/CancelarNfseResponse")
     public String cancelarNfse(
         @WebParam(name = "nfseCabecMsg", targetNamespace = "")
@@ -87,8 +87,8 @@ public interface NfseService {
      */
     @WebMethod(operationName = "ConsultarNfseFaixa")
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "ConsultarNfseFaixa", targetNamespace = "http://NFSe.wsservices.systempro.com.br/", className = "br.com.nfse.api.servico.ConsultarNfseFaixa")
-    @ResponseWrapper(localName = "ConsultarNfseFaixaResponse", targetNamespace = "http://NFSe.wsservices.systempro.com.br/", className = "br.com.nfse.api.servico.ConsultarNfseFaixaResponse")
+    @RequestWrapper(localName = "ConsultarNfseFaixa", targetNamespace = "http://NFSe.wsservices.systempro.com.br/", className = "br.com.nfse.api.stubs.ConsultarNfseFaixa")
+    @ResponseWrapper(localName = "ConsultarNfseFaixaResponse", targetNamespace = "http://NFSe.wsservices.systempro.com.br/", className = "br.com.nfse.api.stubs.ConsultarNfseFaixaResponse")
     @Action(input = "http://NFSe.wsservices.systempro.com.br/NfseService/ConsultarNfseFaixaRequest", output = "http://NFSe.wsservices.systempro.com.br/NfseService/ConsultarNfseFaixaResponse")
     public String consultarNfseFaixa(
         @WebParam(name = "nfseCabecMsg", targetNamespace = "")
@@ -105,8 +105,8 @@ public interface NfseService {
      */
     @WebMethod(operationName = "EnviarLoteRpsSincrono")
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "EnviarLoteRpsSincrono", targetNamespace = "http://NFSe.wsservices.systempro.com.br/", className = "br.com.nfse.api.servico.EnviarLoteRpsSincrono")
-    @ResponseWrapper(localName = "EnviarLoteRpsSincronoResponse", targetNamespace = "http://NFSe.wsservices.systempro.com.br/", className = "br.com.nfse.api.servico.EnviarLoteRpsSincronoResponse")
+    @RequestWrapper(localName = "EnviarLoteRpsSincrono", targetNamespace = "http://NFSe.wsservices.systempro.com.br/", className = "br.com.nfse.api.stubs.EnviarLoteRpsSincrono")
+    @ResponseWrapper(localName = "EnviarLoteRpsSincronoResponse", targetNamespace = "http://NFSe.wsservices.systempro.com.br/", className = "br.com.nfse.api.stubs.EnviarLoteRpsSincronoResponse")
     @Action(input = "http://NFSe.wsservices.systempro.com.br/NfseService/EnviarLoteRpsSincronoRequest", output = "http://NFSe.wsservices.systempro.com.br/NfseService/EnviarLoteRpsSincronoResponse")
     public String enviarLoteRpsSincrono(
         @WebParam(name = "nfseCabecMsg", targetNamespace = "")

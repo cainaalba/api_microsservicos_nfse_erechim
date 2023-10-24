@@ -4,7 +4,6 @@ package br.com.nfse.api.stubs;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlElement;
-import jakarta.xml.bind.annotation.XmlRootElement;
 import jakarta.xml.bind.annotation.XmlType;
 
 
@@ -31,7 +30,6 @@ import jakarta.xml.bind.annotation.XmlType;
 @XmlType(name = "EnviarLoteRpsSincronoResponse", propOrder = {
     "_return"
 })
-@XmlRootElement(name = "EnviarLoteRpsSincronoResponse")
 public class EnviarLoteRpsSincronoResponse {
 
     @XmlElement(name = "return")

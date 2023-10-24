@@ -3,7 +3,6 @@ package br.com.nfse.api.stubs;
 
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
-import jakarta.xml.bind.annotation.XmlRootElement;
 import jakarta.xml.bind.annotation.XmlType;
 
 
@@ -32,7 +31,6 @@ import jakarta.xml.bind.annotation.XmlType;
     "nfseCabecMsg",
     "nfseDadosMsg"
 })
-@XmlRootElement(name = "EnviarLoteRpsSincrono")
 public class EnviarLoteRpsSincrono {
 
     protected String nfseCabecMsg;
