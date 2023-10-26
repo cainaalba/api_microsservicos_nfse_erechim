@@ -1,12 +1,9 @@
 package br.com.nfse.api.service;
 
-import org.apache.tomcat.util.buf.UDecoder;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.ws.client.core.WebServiceTemplate;
-
 import br.com.nfse.api.dto.NfseDto;
 import br.com.nfse.api.stubs.ConsultarNfseFaixa;
 import br.com.nfse.api.stubs.GerarNfse;
@@ -45,10 +42,22 @@ public class SoapService {
     }
 
     public Object consultarNfseFaixa(NfseDto dados) {
-        ConsultarNfseFaixa request = new ConsultarNfseFaixa();
-        request.setNfseCabecMsg(utils.getDefaultCabec());
-        request.setNfseDadosMsg(
-                "<?xml version=\"1.0\" encoding=\"UTF-8\"?><ConsultarNfseFaixaEnvio xmlns=\"http://www.abrasf.org.br/nfse.xsd\"><Prestador><CpfCnpj><Cnpj>93388031000142</Cnpj></CpfCnpj><InscricaoMunicipal>10911</InscricaoMunicipal></Prestador><Faixa><NumeroNfseInicial>141206</NumeroNfseInicial><NumeroNfseFinal>141206</NumeroNfseFinal></Faixa><Pagina>1</Pagina></ConsultarNfseFaixaEnvio>");
-        return invokeSoapService(request);
+        try {
+            // MONTA XML A PARTIR DOS DADOS
+
+            ConsultarNfseFaixa request = new ConsultarNfseFaixa();// factory.createConsultarNfseFaixa(); // new
+                                                                  // ConsultarNfseFaixa();
+            request.setNfseCabecMsg(utils.getDefaultCabec());
+            request.setNfseDadosMsg(
+                    "<?xml version=\"1.0\" encoding=\"UTF-8\"?><ConsultarNfseFaixaEnvio xmlns=\"http://www.abrasf.org.br/nfse.xsd\"><Prestador><CpfCnpj><Cnpj>93388031000142</Cnpj></CpfCnpj><InscricaoMunicipal>10911</InscricaoMunicipal></Prestador><Faixa><NumeroNfseInicial>141206</NumeroNfseInicial><NumeroNfseFinal>141206</NumeroNfseFinal></Faixa><Pagina>1</Pagina></ConsultarNfseFaixaEnvio>");
+            // System.out.println(request.getNfseCabecMsg());
+            // System.out.println(request.getNfseDadosMsg());
+
+            // return invokeSoapService(request);
+            return null;
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return null;
+        }
     }
 }
