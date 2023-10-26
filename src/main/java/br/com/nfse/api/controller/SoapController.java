@@ -1,5 +1,7 @@
 package br.com.nfse.api.controller;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.nfse.api.dto.*;
 import br.com.nfse.api.service.SoapService;
-
 
 @RestController
 @RequestMapping()
@@ -24,6 +25,16 @@ public class SoapController {
     public ResponseEntity<Object> gerarNfse(@RequestBody NfseDto dados) {
         Object response = soapService.gerarNfse(dados);
         return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/CancelarNfse")
+    public ResponseEntity<Object> cancelarNfse(@RequestBody NfseDto dados) {
+        return ResponseEntity.ok("OK");
+    }
+
+    @PostMapping("/SubstituirNfse")
+    public ResponseEntity<Object> substituirNfse(@RequestBody NfseDto dados) {
+        return ResponseEntity.ok("OK");
     }
 
     @GetMapping("/ConsultarNfseFaixa")
