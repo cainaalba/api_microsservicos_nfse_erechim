@@ -5,6 +5,7 @@ import jakarta.jws.WebMethod;
 import jakarta.jws.WebParam;
 import jakarta.jws.WebResult;
 import jakarta.jws.WebService;
+import jakarta.xml.bind.annotation.XmlRootElement;
 import jakarta.xml.bind.annotation.XmlSeeAlso;
 import jakarta.xml.ws.Action;
 import jakarta.xml.ws.RequestWrapper;
@@ -21,6 +22,7 @@ import jakarta.xml.ws.ResponseWrapper;
 @XmlSeeAlso({
     ObjectFactory.class
 })
+@XmlRootElement(name = "NfseService")
 public interface NfseService {
 
 

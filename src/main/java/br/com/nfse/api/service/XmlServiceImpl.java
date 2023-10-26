@@ -1,10 +1,13 @@
 package br.com.nfse.api.service;
 
+import br.com.nfse.api.dto.Nfse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.xml.sax.SAXException;
 
-import javax.xml.bind.*;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Schema;
@@ -21,7 +24,6 @@ public class XmlServiceImpl implements XmlService {
 
     @Override
     public String convertToXml(Object payload) {
-
         try {
             JAXBContext context = JAXBContext.newInstance(Nfse.class);
             Marshaller marshaller = context.createMarshaller();
@@ -38,16 +40,18 @@ public class XmlServiceImpl implements XmlService {
     }
 
     @Override
-    public void validateNfeSchema(String xml) {
-        Source xsdFile = new StreamSource(new File("/Users/rafael.chechi/Projects/Others/3head/cloud/application/nfe/src/main/resources/nfe/nfse-v2-01.xsd"));
+    public boolean validateNfeSchema(String xml) {
+        Source xsdFile = new StreamSource(new File("/src/main/resources/wsdl/schema.xsd"));
         SchemaFactory schemaFactory = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
         try {
             Schema schema = schemaFactory.newSchema(xsdFile);
             Validator validator = schema.newValidator();
             validator.validate(new StreamSource(new StringReader(xml)));
             log.info("O XML é válido em relação ao esquema.");
+            return true;
         } catch (SAXException | IOException e) {
-            throw new RuntimeException(e);
+            // throw new RuntimeException(e);
+            return false;
         }
     }
 }

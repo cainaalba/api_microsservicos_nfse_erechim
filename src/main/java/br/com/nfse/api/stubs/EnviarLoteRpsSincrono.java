@@ -32,7 +32,7 @@ import jakarta.xml.bind.annotation.XmlType;
     "nfseCabecMsg",
     "nfseDadosMsg"
 })
-@XmlRootElement(name = "ConsultarNfseFaixaResponse")
+@XmlRootElement(name = "EnviarLoteRpsSincrono")
 public class EnviarLoteRpsSincrono {
 
     protected String nfseCabecMsg;

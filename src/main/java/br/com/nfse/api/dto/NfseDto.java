@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class GerarNfseDto {
-    private String nfseCabecMsg;
+public class NfseDto {
+    // private String nfseCabecMsg; //CABECALHO DEFAULT DEFINIDO EM Utils --- ver
     private String nfseDadosMsg;
 }
