@@ -1,4 +1,4 @@
-package br.com.nfse.api.dto;
+package br.com.nfse.api.dto.xmlElements;
 
 import lombok.Builder;
 import lombok.Setter;

@@ -1,4 +1,4 @@
-package br.com.nfse.api.dto;
+package br.com.nfse.api.dto.xmlElements;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,6 +7,10 @@ import lombok.Setter;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
+
+import br.com.nfse.api.dto.emun.IncentivoFiscal;
+import br.com.nfse.api.dto.emun.OptanteSimplesNacional;
+import br.com.nfse.api.dto.xmlElements.DadosTomador.Tomador;
 
 @Setter
 @Builder
@@ -17,8 +21,8 @@ public class InfDeclaracaoPrestacaoServico {
     private String competencia;
     private Prestador prestador;
     private Tomador tomador;
-    private String optanteSimplesNacional;
-    private String incentivoFiscal;
+    private OptanteSimplesNacional optanteSimplesNacional;
+    private IncentivoFiscal incentivoFiscal;
     private String id;
 
     @XmlElement(name = "Servico")
@@ -42,12 +46,12 @@ public class InfDeclaracaoPrestacaoServico {
     }
 
     @XmlElement(name = "OptanteSimplesNacional")
-    public String getOptanteSimplesNacional() {
+    public OptanteSimplesNacional getOptanteSimplesNacional() {
         return optanteSimplesNacional;
     }
 
     @XmlElement(name = "IncentivoFiscal")
-    public String getIncentivoFiscal() {
+    public IncentivoFiscal getIncentivoFiscal() {
         return incentivoFiscal;
     }
 

@@ -11,11 +11,11 @@ import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.ws.client.core.WebServiceTemplate;
 import org.springframework.ws.transport.http.HttpsUrlConnectionMessageSender;
 
-import br.com.nfse.api.utils.Utils;
+import br.com.nfse.api.utils.XmlUtil;
 
 @Configuration
 public class Config {
-    Utils utils = new Utils();
+    XmlUtil utils = new XmlUtil();
 
     @Bean
     public WebServiceTemplate webServiceTemplate() {
