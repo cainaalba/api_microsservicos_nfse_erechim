@@ -7,6 +7,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.ws.client.core.WebServiceTemplate;
 
+import br.com.nfse.api.dto.emun.ExigibilidadeISS;
+import br.com.nfse.api.dto.emun.IncentivoFiscal;
+import br.com.nfse.api.dto.emun.IssRetido;
+import br.com.nfse.api.dto.emun.OptanteSimplesNacional;
 import br.com.nfse.api.dto.objects.DtoConsultarNfseFaixa;
 import br.com.nfse.api.dto.objects.DtoGerarNfseEnvio;
 import br.com.nfse.api.dto.services.ConsultarNfseFaixaEnvio;
@@ -18,6 +22,7 @@ import br.com.nfse.api.dto.xmlElements.Nfse;
 import br.com.nfse.api.dto.xmlElements.Prestador;
 import br.com.nfse.api.dto.xmlElements.Rps;
 import br.com.nfse.api.dto.xmlElements.Servico;
+import br.com.nfse.api.dto.xmlElements.Signature;
 import br.com.nfse.api.dto.xmlElements.Valores;
 import br.com.nfse.api.dto.xmlElements.DadosTomador.IdentificacaoTomador;
 import br.com.nfse.api.dto.xmlElements.DadosTomador.Tomador;
@@ -54,8 +59,7 @@ public class SoapService {
                 IdentificacaoTomador identificacaoTomador = IdentificacaoTomador
                                 .builder()
                                 .cpfCnpj(dados.getRps().getTomador().getIdentificacaoTomador().cpfCnpj)
-                                .inscrMunicipal(dados.getRps().getTomador().getIdentificacaoTomador()
-                                                .inscrMunicipal)
+                                .inscrMunicipal(dados.getRps().getTomador().getIdentificacaoTomador().inscrMunicipal)
                                 .build();
 
                 Tomador tomador = Tomador
@@ -87,28 +91,47 @@ public class SoapService {
                 Servico servico = Servico
                                 .builder()
                                 .valores(valores)
-                                .issRetido(dados.getRps().getServico().getIssRetido())
+                                .issRetido(dados.getRps().getServico().getIssRetido().toString().toUpperCase()
+                                                .equals("SIM")
+                                                                ? IssRetido.SIM.getCodString()
+                                                                : IssRetido.NAO.getCodString())
                                 .itemListaServico(dados.getRps().getServico().getItemListaServico())
                                 .discriminacao(dados.getRps().getServico().getDiscriminacao())
                                 .codigoMunicipio(dados.getRps().getServico().getCodigoMunicipio())
-                                .exigibilidadeISS(dados.getRps().getServico().getExigibilidadeISS())
+                                .exigibilidadeISS(dados.getRps().getServico().getExigibilidadeISS().toString()
+                                                .toUpperCase().equals("SIM")
+                                                                ? ExigibilidadeISS.SIM.getCodString()
+                                                                : ExigibilidadeISS.NAO.getCodString())
                                 .municipioIncidencia(dados.getRps().getServico().getMunicipioIncidencia())
                                 .build();
 
                 InfDeclaracaoPrestacaoServico infDeclaracaoPrestacaoServico = InfDeclaracaoPrestacaoServico
                                 .builder()
-                                .id("000000999")
+                                .id("000000999") // NÚMERO RPS....
                                 .competencia(dados.getRps().getCompetencia())
                                 .servico(servico)
                                 .prestador(prestador)
                                 .tomador(tomador)
-                                .optanteSimplesNacional(dados.getRps().getOptanteSimplesNacional())
-                                .incentivoFiscal(dados.getRps().getIncentivoFiscal())
+                                .optanteSimplesNacional(dados.getRps().getOptanteSimplesNacional().toString()
+                                                .toUpperCase().equals("SIM")
+                                                                ? OptanteSimplesNacional.SIM.getCodString()
+                                                                : OptanteSimplesNacional.NAO.getCodString())
+                                .incentivoFiscal(dados.getRps().getIncentivoFiscal().toString().toUpperCase()
+                                                .equals("SIM")
+                                                                ? IncentivoFiscal.SIM.getCodString()
+                                                                : IncentivoFiscal.NAO.getCodString())
                                 .build();
+
+                // Signature signature = Signature
+                // .builder()
+                // .signedInfo(null)
+                // .signatureValue(null)
+                // .build();
 
                 Rps rps = Rps
                                 .builder()
                                 .infDeclaracaoPrestacaoServico(infDeclaracaoPrestacaoServico)
+                                // .signature(signature)
                                 .build();
 
                 GerarNfseEnvio gerarNfseEnvio = GerarNfseEnvio

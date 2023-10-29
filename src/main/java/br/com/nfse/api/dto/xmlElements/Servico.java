@@ -11,11 +11,11 @@ import lombok.*;
 @NoArgsConstructor
 public class Servico {
     private Valores valores;
-    private IssRetido issRetido;
+    private String issRetido;
     private String itemListaServico;
     private String discriminacao;
     private String codigoMunicipio;
-    private ExigibilidadeISS exigibilidadeISS;
+    private String exigibilidadeISS;
     private String municipioIncidencia;
 
     @XmlElement(name = "Valores")
@@ -24,7 +24,7 @@ public class Servico {
     }
 
     @XmlElement(name = "IssRetido")
-    public IssRetido getIssRetido() {
+    public String getIssRetido() {
         return this.issRetido;
     }
 
@@ -44,7 +44,7 @@ public class Servico {
     }
 
     @XmlElement(name = "ExigibilidadeISS")
-    public ExigibilidadeISS getExigibilidadeISS() {
+    public String getExigibilidadeISS() {
         return this.exigibilidadeISS;
     }
 

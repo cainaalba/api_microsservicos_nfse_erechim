@@ -21,8 +21,8 @@ public class InfDeclaracaoPrestacaoServico {
     private String competencia;
     private Prestador prestador;
     private Tomador tomador;
-    private OptanteSimplesNacional optanteSimplesNacional;
-    private IncentivoFiscal incentivoFiscal;
+    private String optanteSimplesNacional;
+    private String incentivoFiscal;
     private String id;
 
     @XmlElement(name = "Servico")
@@ -46,12 +46,12 @@ public class InfDeclaracaoPrestacaoServico {
     }
 
     @XmlElement(name = "OptanteSimplesNacional")
-    public OptanteSimplesNacional getOptanteSimplesNacional() {
+    public String getOptanteSimplesNacional() {
         return optanteSimplesNacional;
     }
 
     @XmlElement(name = "IncentivoFiscal")
-    public IncentivoFiscal getIncentivoFiscal() {
+    public String getIncentivoFiscal() {
         return incentivoFiscal;
     }
 

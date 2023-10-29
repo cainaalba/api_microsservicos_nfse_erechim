@@ -11,5 +11,5 @@ public enum OptanteSimplesNacional {
 
     public String getCodString() {
         return this.codigo;
-      }
+    }
 }
