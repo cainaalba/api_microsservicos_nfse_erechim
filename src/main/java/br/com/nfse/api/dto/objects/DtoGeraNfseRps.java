@@ -5,6 +5,8 @@ import br.com.nfse.api.dto.emun.OptanteSimplesNacional;
 import br.com.nfse.api.dto.xmlElements.InfDeclaracaoPrestacaoServico;
 import br.com.nfse.api.dto.xmlElements.Servico;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 
 @Setter
@@ -12,6 +14,10 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DtoGeraNfseRps {
+    @NotBlank
+    @Size(min = 1, max = 9)
+    private String numeroRps;
+
     @Valid
     private DtoGeraNfsePrestador prestador;
 

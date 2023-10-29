@@ -1,6 +1,5 @@
 package br.com.nfse.api.dto.objects;
 
-import br.com.nfse.api.dto.xmlElements.InfDeclaracaoPrestacaoServico;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

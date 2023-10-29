@@ -1,7 +1,5 @@
 package br.com.nfse.api.dto.xmlElements;
 
-import br.com.nfse.api.dto.emun.ExigibilidadeISS;
-import br.com.nfse.api.dto.emun.IssRetido;
 import jakarta.xml.bind.annotation.XmlElement;
 import lombok.*;
 

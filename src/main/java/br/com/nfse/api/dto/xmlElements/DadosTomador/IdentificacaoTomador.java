@@ -1,6 +1,5 @@
 package br.com.nfse.api.dto.xmlElements.DadosTomador;
 
-import jakarta.xml.bind.annotation.XmlElement;
 import lombok.*;
 
 @Setter

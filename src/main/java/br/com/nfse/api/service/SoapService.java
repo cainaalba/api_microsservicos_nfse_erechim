@@ -1,7 +1,6 @@
 package br.com.nfse.api.service;
 
-import java.util.Arrays;
-
+import java.text.DecimalFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -18,11 +17,9 @@ import br.com.nfse.api.dto.services.GerarNfseEnvio;
 import br.com.nfse.api.dto.xmlElements.Cnpj;
 import br.com.nfse.api.dto.xmlElements.Faixa;
 import br.com.nfse.api.dto.xmlElements.InfDeclaracaoPrestacaoServico;
-import br.com.nfse.api.dto.xmlElements.Nfse;
 import br.com.nfse.api.dto.xmlElements.Prestador;
 import br.com.nfse.api.dto.xmlElements.Rps;
 import br.com.nfse.api.dto.xmlElements.Servico;
-import br.com.nfse.api.dto.xmlElements.Signature;
 import br.com.nfse.api.dto.xmlElements.Valores;
 import br.com.nfse.api.dto.xmlElements.DadosTomador.IdentificacaoTomador;
 import br.com.nfse.api.dto.xmlElements.DadosTomador.Tomador;
@@ -33,6 +30,7 @@ import br.com.nfse.api.utils.XmlUtil;
 @Service
 public class SoapService {
         private XmlUtil utils = new XmlUtil();
+        private DecimalFormat decimalFormat = new DecimalFormat("000000000");
 
         private final WebServiceTemplate webServiceTemplate;
         private final XmlServiceImpl xmlServiceImpl;
@@ -50,6 +48,8 @@ public class SoapService {
         }
 
         public ResponseEntity<Object> gerarNfse(DtoGerarNfseEnvio dados) {
+                final String numeroRps = decimalFormat.format(Integer.parseInt(dados.getRps().getNumeroRps()));
+
                 Prestador prestador = Prestador
                                 .builder()
                                 .cpfCnpj(new Cnpj(dados.getRps().getPrestador().getCpfCnpj()))
@@ -107,7 +107,7 @@ public class SoapService {
 
                 InfDeclaracaoPrestacaoServico infDeclaracaoPrestacaoServico = InfDeclaracaoPrestacaoServico
                                 .builder()
-                                .id("000000999") // NÚMERO RPS....
+                                .id(numeroRps)
                                 .competencia(dados.getRps().getCompetencia())
                                 .servico(servico)
                                 .prestador(prestador)

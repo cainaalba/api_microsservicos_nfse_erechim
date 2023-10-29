@@ -22,7 +22,7 @@ public class NfseController {
     }
 
     @PostMapping("/GerarNfse")
-    public ResponseEntity<Object> gerarNfse(@RequestBody DtoGerarNfseEnvio dados) {
+    public ResponseEntity<Object> gerarNfse(@RequestBody @Valid DtoGerarNfseEnvio dados) {
         Object response = soapService.gerarNfse(dados);
         return ResponseEntity.ok(response);
     }
