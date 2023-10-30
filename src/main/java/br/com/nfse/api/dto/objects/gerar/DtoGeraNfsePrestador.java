@@ -1,4 +1,4 @@
-package br.com.nfse.api.dto.objects;
+package br.com.nfse.api.dto.objects.gerar;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

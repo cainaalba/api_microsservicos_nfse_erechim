@@ -7,8 +7,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.nfse.api.dto.objects.DtoConsultarNfseFaixa;
-import br.com.nfse.api.dto.objects.DtoGerarNfseEnvio;
+import br.com.nfse.api.dto.objects.cancelar.DtoCancelarNfse;
+import br.com.nfse.api.dto.objects.cancelar.DtoCancelarNfseEnvio;
+import br.com.nfse.api.dto.objects.consultar.DtoConsultarNfseEnvio;
+import br.com.nfse.api.dto.objects.gerar.DtoGerarNfseEnvio;
+import br.com.nfse.api.dto.objects.substituir.DtoSubstituirNfse;
+import br.com.nfse.api.dto.objects.substituir.DtoSubstituirNfseEnvio;
 import br.com.nfse.api.service.SoapService;
 import jakarta.validation.Valid;
 
@@ -22,24 +26,22 @@ public class NfseController {
     }
 
     @PostMapping("/GerarNfse")
-    public ResponseEntity<Object> gerarNfse(@RequestBody @Valid DtoGerarNfseEnvio dados) {
-        Object response = soapService.gerarNfse(dados);
-        return ResponseEntity.ok(response);
+    public ResponseEntity<Object> gerarNfse(@RequestBody @Valid DtoGerarNfseEnvio dados) throws Exception {
+        return soapService.gerarNfse(dados);
     }
 
-    // @PostMapping("/CancelarNfse")
-    // public ResponseEntity<Object> cancelarNfse(@RequestBody DtoGerarNfseEnvio dados) {
-    //     return ResponseEntity.ok("OK");
-    // }
+    @PostMapping("/CancelarNfse")
+    public ResponseEntity<Object> cancelarNfse(@RequestBody @Valid DtoCancelarNfseEnvio dados) throws Exception {
+        return soapService.cancelarNfse(dados);
+    }
 
-    // @PostMapping("/SubstituirNfse")
-    // public ResponseEntity<Object> substituirNfse(@RequestBody DtoGerarNfseEnvio dados) {
-    //     return ResponseEntity.ok("OK");
-    // }
+    @PostMapping("/SubstituirNfse")
+    public ResponseEntity<Object> substituirNfse(@RequestBody @Valid DtoSubstituirNfseEnvio dados) throws Exception {
+        return soapService.substituirNfse(dados);
+    }
 
     @GetMapping("/ConsultarNfseFaixa")
-    public ResponseEntity<Object> consultarNfseFaixa(@RequestBody @Valid DtoConsultarNfseFaixa dados) throws RuntimeException  {
-        Object response = soapService.consultarNfseFaixa(dados);
-        return ResponseEntity.ok(response);
+    public ResponseEntity<Object> consultarNfse(@RequestBody @Valid DtoConsultarNfseEnvio dados) throws Exception  {
+        return soapService.consultarNfse(dados);
     }
 }

@@ -1,4 +1,4 @@
-package br.com.nfse.api.dto.xmlElements.DadosTomador;
+package br.com.nfse.api.dto.xmlElements.dadosTomador;
 
 import lombok.*;
 

@@ -1,4 +1,4 @@
-package br.com.nfse.api.dto.objects;
+package br.com.nfse.api.dto.objects.gerar;
 
 import br.com.nfse.api.dto.emun.IncentivoFiscal;
 import br.com.nfse.api.dto.emun.OptanteSimplesNacional;

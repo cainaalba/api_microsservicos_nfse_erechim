@@ -1,4 +1,4 @@
-package br.com.nfse.api.exceptionhandler;
+package br.com.nfse.api.exceptionHandler;
 
 import java.util.Date;
 import java.util.List;

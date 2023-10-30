@@ -1,8 +1,5 @@
-package br.com.nfse.api.dto.xmlElements.DadosTomador;
+package br.com.nfse.api.dto.xmlElements.dadosTomador;
 
-import jakarta.xml.bind.annotation.XmlAccessType;
-import jakarta.xml.bind.annotation.XmlAccessorType;
-import jakarta.xml.bind.annotation.XmlElement;
 import lombok.*;
 
 @Setter

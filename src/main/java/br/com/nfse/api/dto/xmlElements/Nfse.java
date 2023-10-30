@@ -4,8 +4,6 @@ import lombok.*;
 
 import javax.xml.bind.annotation.XmlElement;
 
-import br.com.nfse.api.dto.services.GerarNfseEnvio;
-
 @Setter
 @Builder
 @AllArgsConstructor

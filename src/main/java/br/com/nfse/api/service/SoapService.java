@@ -1,35 +1,47 @@
 package br.com.nfse.api.service;
 
 import java.text.DecimalFormat;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.ws.client.core.WebServiceTemplate;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 
 import br.com.nfse.api.dto.emun.ExigibilidadeISS;
 import br.com.nfse.api.dto.emun.IncentivoFiscal;
 import br.com.nfse.api.dto.emun.IssRetido;
 import br.com.nfse.api.dto.emun.OptanteSimplesNacional;
-import br.com.nfse.api.dto.objects.DtoConsultarNfseFaixa;
-import br.com.nfse.api.dto.objects.DtoGerarNfseEnvio;
-import br.com.nfse.api.dto.services.ConsultarNfseFaixaEnvio;
-import br.com.nfse.api.dto.services.GerarNfseEnvio;
+import br.com.nfse.api.dto.objects.cancelar.DtoCancelarNfse;
+import br.com.nfse.api.dto.objects.cancelar.DtoCancelarNfseEnvio;
+import br.com.nfse.api.dto.objects.consultar.DtoConsultarNfseEnvio;
+import br.com.nfse.api.dto.objects.gerar.DtoGerarNfseEnvio;
+import br.com.nfse.api.dto.objects.substituir.DtoSubstituirNfse;
+import br.com.nfse.api.dto.objects.substituir.DtoSubstituirNfseEnvio;
+import br.com.nfse.api.dto.xmlElements.CancelarNfseEnvio;
 import br.com.nfse.api.dto.xmlElements.Cnpj;
+import br.com.nfse.api.dto.xmlElements.ConsultarNfseFaixaEnvio;
 import br.com.nfse.api.dto.xmlElements.Faixa;
+import br.com.nfse.api.dto.xmlElements.GerarNfseEnvio;
+import br.com.nfse.api.dto.xmlElements.IdentificacaoNfse;
 import br.com.nfse.api.dto.xmlElements.InfDeclaracaoPrestacaoServico;
+import br.com.nfse.api.dto.xmlElements.PedidoCancelamento;
 import br.com.nfse.api.dto.xmlElements.Prestador;
 import br.com.nfse.api.dto.xmlElements.Rps;
 import br.com.nfse.api.dto.xmlElements.Servico;
 import br.com.nfse.api.dto.xmlElements.Valores;
-import br.com.nfse.api.dto.xmlElements.DadosTomador.IdentificacaoTomador;
-import br.com.nfse.api.dto.xmlElements.DadosTomador.Tomador;
+import br.com.nfse.api.dto.xmlElements.dadosTomador.IdentificacaoTomador;
+import br.com.nfse.api.dto.xmlElements.dadosTomador.Tomador;
+import br.com.nfse.api.stubs.CancelarNfse;
+import br.com.nfse.api.stubs.CancelarNfseResponse;
 import br.com.nfse.api.stubs.ConsultarNfseFaixa;
 import br.com.nfse.api.stubs.GerarNfse;
 import br.com.nfse.api.utils.XmlUtil;
 
 @Service
 public class SoapService {
-        private XmlUtil utils = new XmlUtil();
         private DecimalFormat decimalFormat = new DecimalFormat("000000000");
 
         private final WebServiceTemplate webServiceTemplate;
@@ -41,13 +53,83 @@ public class SoapService {
                 this.xmlServiceImpl = xmlServiceImpl;
         }
 
-        public Object invokeSoapService(Object request) {
-                // Use o webServiceTemplate para fazer chamadas ao serviço SOAP
-                Object response = webServiceTemplate.marshalSendAndReceive(request);
-                return response;
+        public ResponseEntity<Object> gerarNfse(DtoGerarNfseEnvio dados) throws Exception {
+                try {
+                        String xmlAssinado = gerarNfseString(dados);
+
+                        GerarNfse request = new GerarNfse();
+                        request.setNfseCabecMsg(XmlUtil.getCabecMsg());
+                        request.setNfseDadosMsg(xmlAssinado);
+                        return ResponseEntity
+                                        .status(HttpStatus.OK)
+                                        .body(webServiceTemplate.marshalSendAndReceive(request));
+                } catch (Exception e) {
+                        e.printStackTrace();
+                        return ResponseEntity
+                                        .status(HttpStatus.BAD_REQUEST)
+                                        .body(e.getLocalizedMessage());
+                }
         }
 
-        public ResponseEntity<Object> gerarNfse(DtoGerarNfseEnvio dados) {
+        public ResponseEntity<Object> consultarNfse(DtoConsultarNfseEnvio dados) throws Exception {
+                try {
+                        Faixa faixa = Faixa.builder()
+                                        .numeroNfseInicial(dados.getConsultar().getNumeroInicial())
+                                        .numeroNfseFinal(dados.getConsultar().getNumeroFinal())
+                                        .build();
+                        Prestador prestador = Prestador
+                                        .builder()
+                                        .cpfCnpj(new Cnpj(dados.getConsultar().getCpfCnpj()))
+                                        .inscrMunicipal(dados.getConsultar().getInscrMunicipal())
+                                        .build();
+
+                        ConsultarNfseFaixaEnvio consultarNfseFaixaEnvio = ConsultarNfseFaixaEnvio
+                                        .builder()
+                                        .prestador(prestador)
+                                        .faixa(faixa)
+                                        .pagina("1")
+                                        .build();
+                        String xml = xmlServiceImpl.convertToXml(consultarNfseFaixaEnvio,
+                                        ConsultarNfseFaixaEnvio.class);
+
+                        ConsultarNfseFaixa request = new ConsultarNfseFaixa();
+                        request.setNfseCabecMsg(XmlUtil.getCabecMsg());
+                        request.setNfseDadosMsg(xml);
+                        return ResponseEntity
+                                        .status(HttpStatus.OK)
+                                        .body(webServiceTemplate.marshalSendAndReceive(request));
+                } catch (Exception e) {
+                        e.printStackTrace();
+                        return ResponseEntity
+                                        .status(HttpStatus.BAD_REQUEST)
+                                        .body(e.getLocalizedMessage());
+                }
+        }
+
+        public ResponseEntity<Object> cancelarNfse(DtoCancelarNfseEnvio dados) throws Exception {
+                try {
+                        String xmlAssinado = cancelarNfseString(dados);
+
+                        CancelarNfse request = new CancelarNfse();
+                        request.setNfseCabecMsg(XmlUtil.getCabecMsg());
+                        request.setNfseDadosMsg(xmlAssinado);
+                        return ResponseEntity
+                                        .status(HttpStatus.OK)
+                                        .body(webServiceTemplate.marshalSendAndReceive(request));
+                } catch (Exception e) {
+                        e.printStackTrace();
+                        return ResponseEntity
+                                        .status(HttpStatus.BAD_REQUEST)
+                                        .body(e.getLocalizedMessage());
+                }
+        }
+
+        public ResponseEntity<Object> substituirNfse(DtoSubstituirNfseEnvio dados) throws Exception {
+                return null;
+        }
+
+        private String gerarNfseString(DtoGerarNfseEnvio dados) throws Exception {
+                final String INF_DECL_PREST_SERV = "infDeclaracaoPrestacaoServico";
                 final String numeroRps = decimalFormat.format(Integer.parseInt(dados.getRps().getNumeroRps()));
 
                 Prestador prestador = Prestador
@@ -107,7 +189,6 @@ public class SoapService {
 
                 InfDeclaracaoPrestacaoServico infDeclaracaoPrestacaoServico = InfDeclaracaoPrestacaoServico
                                 .builder()
-                                .id(numeroRps)
                                 .competencia(dados.getRps().getCompetencia())
                                 .servico(servico)
                                 .prestador(prestador)
@@ -122,16 +203,9 @@ public class SoapService {
                                                                 : IncentivoFiscal.NAO.getCodString())
                                 .build();
 
-                // Signature signature = Signature
-                // .builder()
-                // .signedInfo(null)
-                // .signatureValue(null)
-                // .build();
-
                 Rps rps = Rps
                                 .builder()
                                 .infDeclaracaoPrestacaoServico(infDeclaracaoPrestacaoServico)
-                                // .signature(signature)
                                 .build();
 
                 GerarNfseEnvio gerarNfseEnvio = GerarNfseEnvio
@@ -139,53 +213,57 @@ public class SoapService {
                                 .rps(rps)
                                 .build();
 
-                String xml = xmlServiceImpl.convertToXml(gerarNfseEnvio, GerarNfseEnvio.class);
+                String xmlAssinar = xmlServiceImpl.convertToXml(gerarNfseEnvio, GerarNfseEnvio.class);
+                Document documentoAssinar = XmlUtil.documentFactory(xmlAssinar);
 
-                GerarNfse request = new GerarNfse();
-                request.setNfseCabecMsg(utils.getCabecMsg());
-                request.setNfseDadosMsg(xml);
-                return ResponseEntity.status(HttpStatus.OK).body(invokeSoapService(request));
+                // Atribui valor ao ID
+                NodeList elements = documentoAssinar
+                                .getDocumentElement()
+                                .getElementsByTagName(INF_DECL_PREST_SERV);
+                for (int i = 0; i < elements.getLength(); i++) {
+                        Element element = (Element) elements.item(i);
+                        element.setAttribute("Id", numeroRps);
+                }
+                xmlAssinar = XmlUtil.xmlString(documentoAssinar);
+                return new Assinatura().assinar(xmlAssinar, numeroRps);
         }
 
-        public Object consultarNfseFaixa(DtoConsultarNfseFaixa dados) throws RuntimeException {
-                // {
-                // "cpfCnpj":"93388031000142",
-                // "inscrMunicipal":"10911",
-                // "numeroInicial":"141206",
-                // "numeroFinal":"141206"
-                // }
+        private String cancelarNfseString(DtoCancelarNfseEnvio dados) throws Exception {
+                final String INF_PED_CANC = "infPedidoCancelamento";
 
-                try {
-                        Faixa faixa = Faixa.builder()
-                                        .numeroNfseInicial(dados.getNumeroInicial())
-                                        .numeroNfseFinal(dados.getNumeroFinal())
-                                        .build();
-                        Prestador prestador = Prestador
-                                        .builder()
-                                        .cpfCnpj(new Cnpj(dados.getCpfCnpj()))
-                                        .inscrMunicipal(dados.getInscrMunicipal())
-                                        .build();
+                IdentificacaoNfse identificacaoNfse = IdentificacaoNfse
+                                .builder()
+                                .nfse(dados.getCancelar().getNfse())
+                                .cnpj(dados.getCancelar().getCpfCnpj())
+                                .inscrMunicipal(dados.getCancelar().getInscrMunicipal())
+                                .codigoMunicipio(dados.getCancelar().getCodigoMunicipio())
+                                .build();
+                                
+                PedidoCancelamento pedidoCancelamento = PedidoCancelamento
+                                .builder()
+                                .identificacaoNfse(identificacaoNfse)
+                                .codigoCancelamento(dados.getCancelar().getCodigoCancelamento().toString())
+                                .build();
 
-                        ConsultarNfseFaixaEnvio consultarNfseFaixaEnvio = ConsultarNfseFaixaEnvio
-                                        .builder()
-                                        .prestador(prestador)
-                                        .faixa(faixa)
-                                        .pagina("1")
-                                        .build();
-                        String xml = xmlServiceImpl.convertToXml(consultarNfseFaixaEnvio,
-                                        ConsultarNfseFaixaEnvio.class);
+                CancelarNfseEnvio cancelarNfse = CancelarNfseEnvio
+                                .builder()
+                                .pedidoCancelamento(pedidoCancelamento)
+                                .build();
 
-                        // String xml = "<?xml version=\"1.0\"
-                        // encoding=\"UTF-8\"?><ConsultarNfseFaixaEnvio
-                        // xmlns=\"http://www.abrasf.org.br/nfse.xsd\"><Prestador><CpfCnpj><Cnpj>93388031000142</Cnpj></CpfCnpj><InscricaoMunicipal>10911</InscricaoMunicipal></Prestador><Faixa><NumeroNfseInicial>141206</NumeroNfseInicial><NumeroNfseFinal>141206</NumeroNfseFinal></Faixa><Pagina>1</Pagina></ConsultarNfseFaixaEnvio>";
-                        // System.out.println(xml);
-                        ConsultarNfseFaixa consultarNfseFaixaRequest = new ConsultarNfseFaixa();
-                        consultarNfseFaixaRequest.setNfseCabecMsg(utils.getCabecMsg());
-                        consultarNfseFaixaRequest.setNfseDadosMsg(xml);
-                        return invokeSoapService(consultarNfseFaixaRequest);
-                } catch (Exception exception) {
-                        exception.printStackTrace();
-                        return null;
+                String xmlAssinar = xmlServiceImpl.convertToXml(cancelarNfse,
+                                CancelarNfseEnvio.class);
+
+                Document documentoAssinar = XmlUtil.documentFactory(xmlAssinar);
+
+                // Atribui valor ao ID
+                NodeList elements = documentoAssinar
+                                .getDocumentElement()
+                                .getElementsByTagName(INF_PED_CANC);
+                for (int i = 0; i < elements.getLength(); i++) {
+                        Element element = (Element) elements.item(i);
+                        element.setAttribute("Id", "pedidoCancelamento_" + dados.getCancelar().getNfse());
                 }
+                xmlAssinar = XmlUtil.xmlString(documentoAssinar);
+                return new Assinatura().assinar(xmlAssinar, "pedidoCancelamento_" + dados.getCancelar().getNfse());
         }
 }

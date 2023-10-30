@@ -1,7 +1,5 @@
-package br.com.nfse.api.dto.services;
+package br.com.nfse.api.dto.xmlElements;
 
-import br.com.nfse.api.dto.xmlElements.Faixa;
-import br.com.nfse.api.dto.xmlElements.Prestador;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import lombok.AllArgsConstructor;

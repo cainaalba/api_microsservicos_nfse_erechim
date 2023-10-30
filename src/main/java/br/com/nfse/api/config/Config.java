@@ -15,7 +15,6 @@ import br.com.nfse.api.utils.XmlUtil;
 
 @Configuration
 public class Config {
-    XmlUtil utils = new XmlUtil();
 
     @Bean
     public WebServiceTemplate webServiceTemplate() {
@@ -25,25 +24,39 @@ public class Config {
 
         HttpsUrlConnectionMessageSender hMessageSender = new HttpsUrlConnectionMessageSender();
         hMessageSender.setKeyManagers(keyManager());
-        
+
         sWebServiceTemplate.setMarshaller(marshaller);
         sWebServiceTemplate.setUnmarshaller(marshaller);
-        sWebServiceTemplate.setDefaultUri(utils.getUrlBase());
+        sWebServiceTemplate.setDefaultUri(XmlUtil.getUrlBase());
         sWebServiceTemplate.setMessageSender(hMessageSender);
         return sWebServiceTemplate;
     }
 
-    //CERTIFICADO
-    public KeyManager[] keyManager() {
-        KeyStore keyStore;
+    // CERTIFICADO
+    private KeyManager[] keyManager() {
         try {
-            keyStore = KeyStore.getInstance("pkcs12");
-            FileInputStream fileInputStream = new FileInputStream("src//main//resources//certs//client.pfx");
-            keyStore.load(fileInputStream, "safeweb".toCharArray());
-            return new KeyManager[] { new SunX509KeyManagerImpl(keyStore, "safeweb".toCharArray()) };
+            return new KeyManager[] {
+                    new SunX509KeyManagerImpl(keyStore(), XmlUtil.getPwCert().toCharArray()) };
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
+    }
+
+    private KeyStore keyStore() {
+        KeyStore keyStore;
+        try {
+            keyStore = KeyStore.getInstance("pkcs12");
+            FileInputStream fileInputStream = new FileInputStream("src//main//resources//certs//client.pfx");
+            keyStore.load(fileInputStream, XmlUtil.getPwCert().toCharArray());
+            return keyStore;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public KeyStore getKeyStore() {
+        return keyStore();
     }
 }
