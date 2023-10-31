@@ -1,9 +1,10 @@
 package br.com.nfse.api.dto.objects.gerar;
 
+import javax.validation.Valid;
+
 import br.com.nfse.api.dto.xmlElements.dadosTomador.Contato;
 import br.com.nfse.api.dto.xmlElements.dadosTomador.Endereco;
 import br.com.nfse.api.dto.xmlElements.dadosTomador.IdentificacaoTomador;
-import jakarta.validation.Valid;
 import lombok.*;
 
 @Setter

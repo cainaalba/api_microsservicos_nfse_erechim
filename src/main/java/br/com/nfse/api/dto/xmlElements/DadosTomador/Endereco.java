@@ -1,52 +1,62 @@
 package br.com.nfse.api.dto.xmlElements.dadosTomador;
 
+import jakarta.xml.bind.annotation.XmlElement;
 import lombok.*;
 
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Endereco {
+	@XmlElement(name = "Endereco")
 	public String endereco;
+
+	@XmlElement(name = "Numero")
 	public int numero;
+
+	@XmlElement(name = "Bairro")
 	public String bairro;
+
+	@XmlElement(name = "CodigoMunicipio")
 	public String codigoMunicipio;
+
+	@XmlElement(name = "Uf")
 	public String uf;
+
+	@XmlElement(name = "CodigoPais")
 	public String codigoPais;
+
+	@XmlElement(name = "Cep")
 	public String cep;
 
-	// @XmlElement(name = "Endereco")
 	// public String getEndereco() {
-	// 	return this.endereco;
+	// return this.endereco;
 	// }
 
-	// @XmlElement(name = "Numero")
 	// public int getNumero() {
-	// 	return this.numero;
+	// return this.numero;
 	// }
 
-	// @XmlElement(name = "Bairro")
 	// public String getBairro() {
-	// 	return this.bairro;
+	// return this.bairro;
 	// }
 
-	// @XmlElement(name = "CodigoMunicipio")
 	// public String getCodigoMunicipio() {
-	// 	return this.codigoMunicipio;
+	// return this.codigoMunicipio;
 	// }
 
 	// @XmlElement(name = "Uf")
 	// public String getUf() {
-	// 	return this.uf;
+	// return this.uf;
 	// }
 
 	// @XmlElement(name = "CodigoPais")
 	// public String getCodigoPais() {
-	// 	return this.codigoPais;
+	// return this.codigoPais;
 	// }
 
 	// @XmlElement(name = "Cep")
 	// public String getCep() {
-	// 	return this.cep;
+	// return this.cep;
 	// }
 
 }

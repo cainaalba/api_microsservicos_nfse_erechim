@@ -9,10 +9,10 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Cpf {
-    private String cpf;
+    private String cpfCnpj;
 
     @XmlElement(name = "Cpf")
     public String getCpf() {
-        return cpf;
+        return cpfCnpj;
     }
 }

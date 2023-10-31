@@ -1,5 +1,7 @@
 package br.com.nfse.api.dto.xmlElements.dadosTomador;
 
+import br.com.nfse.api.dto.xmlElements.Cpf;
+import jakarta.xml.bind.annotation.XmlElement;
 import lombok.*;
 
 @Setter
@@ -7,15 +9,16 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class IdentificacaoTomador {
-	public CpfCnpj cpfCnpj;
+	@XmlElement(name = "CpfCnpj")
+	public Cpf cpfCnpj;
+
+	@XmlElement(name = "InscricaoMunicipal")
 	public String inscrMunicipal;
 
-	// @XmlElement(name = "CpfCnpj")
 	// public CpfCnpj getCpfCnpj() {
 	// 	return this.cpfCnpj;
 	// }
 
-	// @XmlElement(name = "InscricaoMunicipal")
 	// public String getInscrMunicipal() {
 	// 	return this.inscrMunicipal;
 	// }

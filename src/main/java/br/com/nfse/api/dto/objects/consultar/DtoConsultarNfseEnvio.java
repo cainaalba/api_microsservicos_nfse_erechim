@@ -1,6 +1,7 @@
 package br.com.nfse.api.dto.objects.consultar;
 
-import jakarta.validation.Valid;
+import javax.validation.Valid;
+
 import lombok.*;
 
 @Setter

@@ -28,7 +28,7 @@ import br.com.nfse.api.config.Config;
 import br.com.nfse.api.utils.XmlUtil;
 
 public class Assinatura {
-    private final String INF_DECL_PREST_SERV = "infDeclaracaoPrestacaoServico";
+    private final String INF_DECL_PREST_SERV = "InfDeclaracaoPrestacaoServico";
     private final String[] ELEMENTOS_ASSINAVEIS = new String[] { "InfPedidoCancelamento" };
     private Config config = new Config();
 

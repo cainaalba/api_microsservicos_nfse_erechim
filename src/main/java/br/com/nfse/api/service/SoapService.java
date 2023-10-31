@@ -145,7 +145,7 @@ public class SoapService {
         }
 
         private String gerarNfseString(DtoGerarNfseEnvio dados) throws Exception {
-                final String INF_DECL_PREST_SERV = "infDeclaracaoPrestacaoServico";
+                final String INF_DECL_PREST_SERV = "InfDeclaracaoPrestacaoServico";
                 final String numeroRps = decimalFormat.format(Integer.parseInt(dados.getRps().getNumeroRps()));
 
                 Prestador prestador = Prestador
@@ -305,7 +305,7 @@ public class SoapService {
 
         private String substituiNfseString(DtoSubstituirNfseEnvio dados) throws Exception {
                 final String INF_PED_CANC = "InfPedidoCancelamento";
-                final String INF_DECL_PREST_SERV = "infDeclaracaoPrestacaoServico";
+                final String INF_DECL_PREST_SERV = "InfDeclaracaoPrestacaoServico";
                 final String numeroRps = decimalFormat
                                 .format(Integer.parseInt(dados.getSubstituir().getRps().getNumeroRps()));
 

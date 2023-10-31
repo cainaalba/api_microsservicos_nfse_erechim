@@ -5,16 +5,19 @@ import lombok.Builder;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.xml.bind.annotation.XmlElement;
+import javax.validation.Valid;
 
 import br.com.nfse.api.dto.xmlElements.dadosTomador.Tomador;
+import jakarta.xml.bind.annotation.XmlElement;
 
 @Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class InfDeclaracaoPrestacaoServico {
+    @Valid
     private Servico servico;
+    
     private String competencia;
     private Prestador prestador;
     private Tomador tomador;

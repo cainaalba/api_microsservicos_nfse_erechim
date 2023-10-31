@@ -1,5 +1,8 @@
 package br.com.nfse.api.dto.xmlElements;
 
+
+import javax.validation.Valid;
+
 import jakarta.xml.bind.annotation.XmlElement;
 import lombok.*;
 
@@ -8,7 +11,9 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Servico {
+    @Valid
     private Valores valores;
+
     private String issRetido;
     private String itemListaServico;
     private String discriminacao;

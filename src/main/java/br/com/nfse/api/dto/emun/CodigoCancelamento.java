@@ -1,6 +1,6 @@
 package br.com.nfse.api.dto.emun;
 
-import jakarta.validation.constraints.NotBlank;
+import javax.validation.constraints.NotBlank;
 
 /* CÓDIGOS DE CANELAMENTO : -----------------------------------------------------------------------------------------
 	// 1 - Erro de emissão

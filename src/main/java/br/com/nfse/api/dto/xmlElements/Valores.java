@@ -1,5 +1,8 @@
 package br.com.nfse.api.dto.xmlElements;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+
 import jakarta.xml.bind.annotation.XmlElement;
 import lombok.*;
 
@@ -8,76 +11,79 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Valores {
-    private double valorServicos;
-    private double valorDeducoes;
-    private double valorPis;
-    private double valorCofins;
-    private double valorInss;
-    private double valorIr;
-    private double valorCsll;
-    private double valorIss;
-    private double aliquota;
-    private double descontoIncondicionado;
-    private double descontoCondicionado;
-    private double baseCalculo;
+    private String valorServicos;
+    private String valorDeducoes;
+    private String valorPis;
+    private String valorCofins;
+    private String valorInss;
+    private String valorIr;
+    private String valorCsll;
+    private String valorIss;
+
+    @NotBlank
+    @Min(1)
+    private Integer aliquota;
+    private String descontoIncondicionado;
+    private String descontoCondicionado;
+    private String baseCalculo;
 
     @XmlElement(name = "ValorServicos")
-    public double getValorServicos() {
+    public String getValorServicos() {
         return this.valorServicos;
     }
 
     @XmlElement(name = "ValorDeducoes")
-    public double getValorDeducoes() {
+    public String getValorDeducoes() {
         return this.valorDeducoes;
     }
 
     @XmlElement(name = "ValorPis")
-    public double getValorPis() {
+    public String getValorPis() {
         return this.valorPis;
     }
 
     @XmlElement(name = "ValorCofins")
-    public double getValorCofins() {
+    public String getValorCofins() {
         return this.valorCofins;
     }
 
     @XmlElement(name = "ValorInss")
-    public double getValorInss() {
+    public String getValorInss() {
         return this.valorInss;
     }
 
     @XmlElement(name = "ValorIr")
-    public double getValorIr() {
+    public String getValorIr() {
         return this.valorIr;
     }
 
     @XmlElement(name = "ValorCsll")
-    public double getValorCsll() {
+    public String getValorCsll() {
         return this.valorCsll;
     }
 
     @XmlElement(name = "ValorIss")
-    public double getValorIss() {
+    public String getValorIss() {
         return this.valorIss;
     }
 
     @XmlElement(name = "Aliquota")
-    public double getAliquota() {
+    public Integer getAliquota() {
         return this.aliquota;
     }
 
     @XmlElement(name = "DescontoIncondicionado")
-    public double getDescontoIncondicionado() {
+    public String getDescontoIncondicionado() {
         return this.descontoIncondicionado;
     }
 
     @XmlElement(name = "DescontoCondicionado")
-    public double getDescontoCondicionado() {
+    public String getDescontoCondicionado() {
         return this.descontoCondicionado;
     }
 
     @XmlElement(name = "BaseCalculo")
-    public double getBaseCalculo() {
+    public String getBaseCalculo() {
         return this.baseCalculo;
     }
 }

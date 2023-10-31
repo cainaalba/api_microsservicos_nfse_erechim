@@ -1,5 +1,7 @@
 package br.com.nfse.api.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,7 +14,6 @@ import br.com.nfse.api.dto.objects.consultar.DtoConsultarNfseEnvio;
 import br.com.nfse.api.dto.objects.gerar.DtoGerarNfseEnvio;
 import br.com.nfse.api.dto.objects.substituir.DtoSubstituirNfseEnvio;
 import br.com.nfse.api.service.SoapService;
-import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping()

@@ -1,8 +1,10 @@
 package br.com.nfse.api.dto.objects.substituir;
 
+import javax.validation.Valid;
+
 import br.com.nfse.api.dto.objects.cancelar.DtoCancelarNfse;
 import br.com.nfse.api.dto.objects.gerar.DtoGeraNfseRps;
-import jakarta.validation.Valid;
+
 import lombok.*;
 
 @Setter

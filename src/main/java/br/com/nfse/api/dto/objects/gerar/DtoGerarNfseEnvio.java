@@ -1,6 +1,8 @@
 package br.com.nfse.api.dto.objects.gerar;
 
-import jakarta.validation.Valid;
+
+import javax.validation.Valid;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
