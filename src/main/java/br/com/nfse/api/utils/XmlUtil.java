@@ -19,7 +19,7 @@ public class XmlUtil {
     private static String pwCert;
 
     //URL PRODUÇÃO: //"https://www.nfse.erechim.rs.gov.br:8182/NfseService/NfseService"
-    private static String urlBase = "https://www.nfse.erechim.rs.gov.br:8182/NfseService/NfseService"; //"https://www.nfse.erechim.rs.gov.br:8183/NfseService_Homolog/NfseService_Homolog";
+    private static String urlBase = "https://www.nfse.erechim.rs.gov.br:8183/NfseService_Homolog/NfseService_Homolog";
 
     private static String cabecMsg = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
             "<cabecalho xmlns=\"http://www.abrasf.org.br/nfse.xsd\" versao=\"2.00\">" +

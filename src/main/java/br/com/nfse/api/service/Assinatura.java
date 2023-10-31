@@ -1,8 +1,6 @@
 package br.com.nfse.api.service;
 
-import java.security.InvalidAlgorithmParameterException;
 import java.security.KeyStore;
-import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
 import java.security.cert.X509Certificate;
 import java.util.ArrayList;
