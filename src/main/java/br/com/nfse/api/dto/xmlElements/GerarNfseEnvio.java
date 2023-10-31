@@ -16,7 +16,7 @@ import jakarta.xml.bind.annotation.XmlRootElement;
 // @XmlAccessorType(XmlAccessType.FIELD)
 public class GerarNfseEnvio {
     private Rps rps;
-
+    
     @XmlElement(name = "Rps")
     public Rps getRps() {
         return rps;

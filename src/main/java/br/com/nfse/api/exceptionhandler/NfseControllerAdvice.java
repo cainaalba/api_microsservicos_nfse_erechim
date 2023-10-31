@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @ControllerAdvice(basePackages = "br.com.nfse.api.controller")
-public class ColetaControllerAdvice {
+public class NfseControllerAdvice {
     
     @ResponseBody
     @ExceptionHandler(MethodArgumentNotValidException.class)

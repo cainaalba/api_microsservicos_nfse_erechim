@@ -1,5 +1,7 @@
 package br.com.nfse.api.dto.emun;
 
+import jakarta.validation.constraints.NotBlank;
+
 /* CÓDIGOS DE CANELAMENTO : -----------------------------------------------------------------------------------------
 	// 1 - Erro de emissão
 	// 2 - Serviço não concluido
@@ -15,6 +17,7 @@ public enum CodigoCancelamento {
     NAO_PRESTADO("2", "Serviço não concluído"),
     RPS_CANCELADA("3", "RPS Cancelado na Emissão");
 
+    @NotBlank
     private String codigo;
     private String descricao;
 

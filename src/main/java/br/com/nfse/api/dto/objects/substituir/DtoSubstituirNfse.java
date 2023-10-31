@@ -1,7 +1,7 @@
 package br.com.nfse.api.dto.objects.substituir;
 
 import br.com.nfse.api.dto.objects.cancelar.DtoCancelarNfse;
-import br.com.nfse.api.dto.objects.gerar.DtoGerarNfseEnvio;
+import br.com.nfse.api.dto.objects.gerar.DtoGeraNfseRps;
 import jakarta.validation.Valid;
 import lombok.*;
 
@@ -14,5 +14,5 @@ public class DtoSubstituirNfse {
     private DtoCancelarNfse cancelar;
 
     @Valid
-    private DtoGerarNfseEnvio rps;
+    private DtoGeraNfseRps rps;
 }

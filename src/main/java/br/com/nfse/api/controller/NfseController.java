@@ -7,11 +7,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.nfse.api.dto.objects.cancelar.DtoCancelarNfse;
 import br.com.nfse.api.dto.objects.cancelar.DtoCancelarNfseEnvio;
 import br.com.nfse.api.dto.objects.consultar.DtoConsultarNfseEnvio;
 import br.com.nfse.api.dto.objects.gerar.DtoGerarNfseEnvio;
-import br.com.nfse.api.dto.objects.substituir.DtoSubstituirNfse;
 import br.com.nfse.api.dto.objects.substituir.DtoSubstituirNfseEnvio;
 import br.com.nfse.api.service.SoapService;
 import jakarta.validation.Valid;

@@ -1,7 +1,7 @@
 package br.com.nfse.api.dto.objects.cancelar;
 
 import br.com.nfse.api.dto.emun.CodigoCancelamento;
-import br.com.nfse.api.dto.objects.gerar.DtoGeraNfsePrestador;
+
 import br.com.nfse.api.dto.xmlElements.Cnpj;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
@@ -24,6 +24,6 @@ public class DtoCancelarNfse {
     @NotBlank
     private String codigoMunicipio;
 
-    @NotBlank
+    @Valid
     private CodigoCancelamento codigoCancelamento;
 }

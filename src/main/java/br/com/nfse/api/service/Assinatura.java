@@ -31,14 +31,14 @@ import br.com.nfse.api.utils.XmlUtil;
 
 public class Assinatura {
     private final String INF_DECL_PREST_SERV = "infDeclaracaoPrestacaoServico";
-    private final String[] ELEMENTOS_ASSINAVEIS = new String[] { "infPedidoCancelamento" };
+    private final String[] ELEMENTOS_ASSINAVEIS = new String[] { "InfPedidoCancelamento" };
     private Config config = new Config();
 
-    public String assinar(String xml, String id) throws Exception {
-        return assinarXml(xml, id);
+    public String assinar(String xml) throws Exception {
+        return assinarXml(xml);
     }
 
-    private String assinarXml(String xml, String id) throws Exception {
+    private String assinarXml(String xml) throws Exception {
         Document documentoAssinar = XmlUtil.documentFactory(xml);
 
         // Assina RPS
@@ -46,7 +46,7 @@ public class Assinatura {
         for (int i = 0; i < elements.getLength(); i++) {
             Element element = (Element) elements.item(i);
             element.setIdAttribute("Id", true); //DEFINE URI ID
-            assinadDocumento(id, element);
+            assinadDocumento(elements.item(i).getAttributes().getNamedItem("Id").getNodeValue(), element);
         }
 
         Document documentAssinado = XmlUtil.documentFactory(XmlUtil.xmlString(documentoAssinar));
@@ -54,10 +54,8 @@ public class Assinatura {
             NodeList elementsAssinado = documentAssinado.getDocumentElement().getElementsByTagName(elementoAssinavel);
             for (int i = 0; i < elementsAssinado.getLength(); i++) {
                 Element element = (Element) elementsAssinado.item(i);
-                // element.setAttribute("Id", id); //SETAR ID NA MONTAGEM DO XML
                 element.setIdAttribute("Id", true);
-
-                assinadDocumento(id, element);
+                assinadDocumento(elementsAssinado.item(i).getAttributes().getNamedItem("Id").getNodeValue(), element);
             }
         }
         return XmlUtil.xmlString(documentAssinado);
