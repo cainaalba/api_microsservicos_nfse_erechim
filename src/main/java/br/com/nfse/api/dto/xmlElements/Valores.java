@@ -1,8 +1,5 @@
 package br.com.nfse.api.dto.xmlElements;
 
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-
 import jakarta.xml.bind.annotation.XmlElement;
 import lombok.*;
 
@@ -19,10 +16,7 @@ public class Valores {
     private String valorIr;
     private String valorCsll;
     private String valorIss;
-
-    @NotBlank
-    @Min(1)
-    private Integer aliquota;
+    private String aliquota;
     private String descontoIncondicionado;
     private String descontoCondicionado;
     private String baseCalculo;
@@ -68,7 +62,7 @@ public class Valores {
     }
 
     @XmlElement(name = "Aliquota")
-    public Integer getAliquota() {
+    public String getAliquota() {
         return this.aliquota;
     }
 

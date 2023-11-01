@@ -1,0 +1,56 @@
+//OBSERVAÇÕES:
+//NO XML DE RETORNO, CAPTURAR E GRAVAR O ID PARA CANCELAMENTOS EX: Nfse_93388031000142_529, Nfse_93388031000142_530, ETC
+{
+    "rps": {
+        "numeroRps": "10", //SERÁ CONVERTIDO PARA 9 CARACTERES - DEVE SER ID ÚNICO
+        "prestador": {
+            "cpfCnpj": "93388031000142",
+            "inscrMunicipal": "10911"
+        },
+        "tomador": {
+            "identificacaoTomador": {
+                "cpfCnpj": "18696626524",
+                "inscrMunicipal": "ISENTO"
+            },
+            "razaoSocial": "TESTE TI",
+            "endereco": {
+                "endereco": "RUA TESTE",
+                "numero": "999",
+                "bairro": "B. TESTE",
+                "codigoMunicipio": "4307005",
+                "uf": "RS",
+                "codigoPais": "1058",
+                "cep": "99700000"
+            },
+            "contato": {
+                "telefone": "054999999999",
+                "email": "mail@mail.com.br"
+            }
+        },
+        "servico": {
+            "valores": {
+                "valorServicos": 10.00,
+                "valorDeducoes": 0.00,
+                "valorPis": 0.00,
+                "valorCofins": 0.00,
+                "valorInss": 0.00,
+                "valorIr": 0.00,
+                "valorCsll": 0.00,
+                "valorIss": 0.20,
+                "aliquota": 2.00,
+                "descontoIncondicionado": 0.00,
+                "descontoCondicionado": 0.00,
+                "baseCalculo": 10.00
+            },
+            "issRetido": "NAO",
+            "itemListaServico": "14.04", //INFORMAR CÓDIGO DA LISTA DE SERVIÇO, DISPONÍVEL NO PORTAL DA PREFEITURA
+            "discriminacao": "DESCRIÇÃO DA LISTA DE SERVICO", //INFORMAR DESCRIÇÃO DA LISTA DE SERVIÇO, DISPONÍVEL NO PORTAL DA PREFEITURA
+            "codigoMunicipio": "4307005",
+            "exigibilidadeISS": "NAO",
+            "municipioIncidencia": "4307005"
+        },
+        "competencia": "2023-10-30",
+        "optanteSimplesNacional": "NAO",
+        "incentivoFiscal": "NAO"
+    }
+}

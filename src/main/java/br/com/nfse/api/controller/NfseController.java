@@ -1,7 +1,5 @@
 package br.com.nfse.api.controller;
 
-import javax.validation.Valid;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,22 +23,22 @@ public class NfseController {
     }
 
     @PostMapping("/GerarNfse")
-    public ResponseEntity<Object> gerarNfse(@RequestBody @Valid DtoGerarNfseEnvio dados) throws Exception {
+    public ResponseEntity<Object> gerarNfse(@RequestBody DtoGerarNfseEnvio dados) throws Exception {
         return soapService.gerarNfse(dados);
     }
 
     @PostMapping("/CancelarNfse")
-    public ResponseEntity<Object> cancelarNfse(@RequestBody @Valid DtoCancelarNfseEnvio dados) throws Exception {
+    public ResponseEntity<Object> cancelarNfse(@RequestBody DtoCancelarNfseEnvio dados) throws Exception {
         return soapService.cancelarNfse(dados);
     }
 
     @PostMapping("/SubstituirNfse")
-    public ResponseEntity<Object> substituirNfse(@RequestBody @Valid DtoSubstituirNfseEnvio dados) throws Exception {
+    public ResponseEntity<Object> substituirNfse(@RequestBody DtoSubstituirNfseEnvio dados) throws Exception {
         return soapService.substituirNfse(dados);
     }
 
     @GetMapping("/ConsultarNfseFaixa")
-    public ResponseEntity<Object> consultarNfse(@RequestBody @Valid DtoConsultarNfseEnvio dados) throws Exception  {
+    public ResponseEntity<Object> consultarNfse(@RequestBody DtoConsultarNfseEnvio dados) throws Exception  {
         return soapService.consultarNfse(dados);
     }
 }

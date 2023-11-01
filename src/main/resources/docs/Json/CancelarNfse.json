@@ -1,0 +1,9 @@
+{
+    "cancelar": {
+        "nfse": "529", //DEVE SER O NÚMERO EXATO DA NFSE
+        "cpfCnpj": "93388031000142",
+        "inscrMunicipal": "10911",
+        "codigoMunicipio": "4307005",
+        "codigoCancelamento": "ERRO_EMISSAO"
+    }
+}

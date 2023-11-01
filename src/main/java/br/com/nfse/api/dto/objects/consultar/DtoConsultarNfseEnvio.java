@@ -1,7 +1,5 @@
 package br.com.nfse.api.dto.objects.consultar;
 
-import javax.validation.Valid;
-
 import lombok.*;
 
 @Setter
@@ -9,6 +7,5 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DtoConsultarNfseEnvio {
-    @Valid
     private DtoConsultarNfseFaixa consultar;
 }

@@ -1,0 +1,9 @@
+//numeroInicial E numeroFinal DEVEM TER SOMENTE 1 DOCUMENTO. WEBSERVICE NÃO ACEITA INTERVALO DE NOTAS
+{
+    "consultar": {
+        "cpfCnpj": "93388031000142",
+        "inscrMunicipal": "10911",
+        "numeroInicial": "529",
+        "numeroFinal": "529"
+    }
+}

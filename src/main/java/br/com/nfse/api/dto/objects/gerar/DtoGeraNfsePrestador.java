@@ -1,8 +1,5 @@
 package br.com.nfse.api.dto.objects.gerar;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
-
 import lombok.*;
 
 @Setter
@@ -10,10 +7,6 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DtoGeraNfsePrestador {
-    @NotBlank
-    @Size(min = 1, max = 15)
     private String cpfCnpj;
-
-    @NotBlank
     private String inscrMunicipal;
 }
