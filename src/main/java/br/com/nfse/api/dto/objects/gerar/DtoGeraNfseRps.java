@@ -15,6 +15,7 @@ public class DtoGeraNfseRps {
     private DtoGeraNfsePrestador prestador;
     private DtoGeraNfseTomador tomador;
     private Servico servico;
+    private String regimeEspecialTributacao;
     private InfDeclaracaoPrestacaoServico infDeclaracaoPrestacaoServico;
     private OptanteSimplesNacional optanteSimplesNacional;
     private IncentivoFiscal incentivoFiscal;

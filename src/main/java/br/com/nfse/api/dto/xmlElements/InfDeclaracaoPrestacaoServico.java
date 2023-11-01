@@ -17,6 +17,7 @@ public class InfDeclaracaoPrestacaoServico {
     private String competencia;
     private Prestador prestador;
     private Tomador tomador;
+    private String regimeEspecialTributacao;
     private String optanteSimplesNacional;
     private String incentivoFiscal;
 
@@ -38,6 +39,11 @@ public class InfDeclaracaoPrestacaoServico {
     @XmlElement(name = "Tomador")
     public Tomador getTomador() {
         return tomador;
+    }
+
+    @XmlElement(name = "RegimeEspecialTributacao")
+    public String getRegimeEspecialTributacao() {
+        return regimeEspecialTributacao;
     }
 
     @XmlElement(name = "OptanteSimplesNacional")

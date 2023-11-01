@@ -22,6 +22,7 @@ import br.com.nfse.api.dto.objects.substituir.DtoSubstituirNfseEnvio;
 import br.com.nfse.api.dto.xmlElements.CancelarNfseEnvio;
 import br.com.nfse.api.dto.xmlElements.Cnpj;
 import br.com.nfse.api.dto.xmlElements.ConsultarNfseFaixaEnvio;
+import br.com.nfse.api.dto.xmlElements.Cpf;
 import br.com.nfse.api.dto.xmlElements.Faixa;
 import br.com.nfse.api.dto.xmlElements.GerarNfseEnvio;
 import br.com.nfse.api.dto.xmlElements.IdentificacaoNfse;
@@ -154,11 +155,20 @@ public class SoapService {
                                 .inscrMunicipal(dados.getRps().getPrestador().getInscrMunicipal())
                                 .build();
 
-                IdentificacaoTomador identificacaoTomador = IdentificacaoTomador
-                                .builder()
-                                .cpfCnpj(dados.getRps().getTomador().getIdentificacaoTomador().cpfCnpj)
-                                .inscrMunicipal(dados.getRps().getTomador().getIdentificacaoTomador().inscrMunicipal)
-                                .build();
+                IdentificacaoTomador identificacaoTomador;
+                if (dados.getRps().getTomador().getCpfCnpj().length() == 14) {
+                        identificacaoTomador = IdentificacaoTomador
+                                        .builder()
+                                        .cnpj(new Cnpj(dados.getRps().getTomador().getCpfCnpj()))
+                                        .inscrMunicipal(dados.getRps().getTomador().getInscrMunicipal())
+                                        .build();
+                } else {
+                        identificacaoTomador = IdentificacaoTomador
+                                        .builder()
+                                        .cpf(new Cpf(dados.getRps().getTomador().getCpfCnpj()))
+                                        .inscrMunicipal(dados.getRps().getTomador().getInscrMunicipal())
+                                        .build();
+                }
 
                 Tomador tomador = Tomador
                                 .builder()
@@ -209,6 +219,7 @@ public class SoapService {
                                 .servico(servico)
                                 .prestador(prestador)
                                 .tomador(tomador)
+                                .regimeEspecialTributacao(dados.getRps().getRegimeEspecialTributacao())
                                 .optanteSimplesNacional(dados.getRps().getOptanteSimplesNacional().toString()
                                                 .toUpperCase().equals("SIM")
                                                                 ? OptanteSimplesNacional.SIM.getCodString()
@@ -351,12 +362,20 @@ public class SoapService {
                                 .inscrMunicipal(dados.getSubstituir().getRps().getPrestador().getInscrMunicipal())
                                 .build();
 
-                IdentificacaoTomador identificacaoTomador = IdentificacaoTomador
-                                .builder()
-                                .cpfCnpj(dados.getSubstituir().getRps().getTomador().getIdentificacaoTomador().cpfCnpj)
-                                .inscrMunicipal(dados.getSubstituir().getRps().getTomador()
-                                                .getIdentificacaoTomador().inscrMunicipal)
-                                .build();
+                IdentificacaoTomador identificacaoTomador;
+                if (dados.getSubstituir().getRps().getTomador().getCpfCnpj().length() == 14) {
+                        identificacaoTomador = IdentificacaoTomador
+                                        .builder()
+                                        .cnpj(new Cnpj(dados.getSubstituir().getRps().getTomador().getCpfCnpj()))
+                                        .inscrMunicipal(dados.getSubstituir().getRps().getTomador().getInscrMunicipal())
+                                        .build();
+                } else {
+                        identificacaoTomador = IdentificacaoTomador
+                                        .builder()
+                                        .cpf(new Cpf(dados.getSubstituir().getRps().getTomador().getCpfCnpj()))
+                                        .inscrMunicipal(dados.getSubstituir().getRps().getTomador().getInscrMunicipal())
+                                        .build();
+                }
 
                 Tomador tomador = Tomador
                                 .builder()
@@ -414,6 +433,7 @@ public class SoapService {
                                 .servico(servico)
                                 .prestador(prestador)
                                 .tomador(tomador)
+                                .regimeEspecialTributacao(dados.getSubstituir().getRps().getRegimeEspecialTributacao())
                                 .optanteSimplesNacional(dados.getSubstituir().getRps().getOptanteSimplesNacional()
                                                 .toString()
                                                 .toUpperCase().equals("SIM")
